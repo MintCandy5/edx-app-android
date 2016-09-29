@@ -74,7 +74,8 @@
                     android:drawablePadding="@dimen/x_small_icon_margin"
                     android:text="@string/edit_user_profile_change_photo"
                     android:textColor="@color/disableable_button_text"
-                    android:textSize="@dimen/edx_x_small" />
+                    android:textSize="@dimen/edx_x_small"
+                    android:contentDescription="@string/edit_user_profile_change_photo_content_description"/>
             </LinearLayout>
 
             <android.support.v7.widget.LinearLayoutCompat

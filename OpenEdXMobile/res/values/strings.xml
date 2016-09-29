@@ -584,6 +584,8 @@
     <string name="profile_incomplete_about_me">No “About me” info provided.</string>
     <!-- Window title for edit profile screen -->
     <string name="edit_user_profile_title">Edit profile</string>
+    <!-- Content description for edit profile username -->
+    <string name="edit_user_username_content_description">Your username is {username}</string>
     <!-- How most profile fields are formatted when viewing the edit screen -->
     <string name="edit_user_profile_field">{label}: {value}</string>
     <!-- Default placeholder if a profile field is blank -->
@@ -596,6 +598,8 @@
     <string name="edit_user_profile_current_location">Current location: {current_location}</string>
     <!-- Button label that will open gallery or camera for choosing new profile photo -->
     <string name="edit_user_profile_change_photo">Change</string>
+    <!-- Content Description for change photo button -->
+    <string name="edit_user_profile_change_photo_content_description">Change Profile Picture</string>
     <!-- Button that will open a camera for taking a new profile photo -->
     <string name="edit_user_profile_take_photo">Take photo</string>
     <!-- Button that will open photo gallery for choosing a new profile photo -->
