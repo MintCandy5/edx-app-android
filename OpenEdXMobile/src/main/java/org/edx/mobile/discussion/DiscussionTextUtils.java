@@ -68,7 +68,7 @@ public abstract class DiscussionTextUtils {
                 final SpannableString authorSpan = new SpannableString(author);
                 if (config.isUserProfilesEnabled() && !authorData.isAuthorAnonymous()) {
                     // Change the author text color and style
-                    applyColorAndStyle(context, authorSpan, R.color.edx_brand_primary_base, Typeface.BOLD);
+                    applyColorAndStyle(context, authorSpan, getAuthorTextColor(authorData), Typeface.BOLD);
 
                     // Set the click listener on the whole textView
                     textView.setOnClickListener(new View.OnClickListener() {
@@ -114,7 +114,7 @@ public abstract class DiscussionTextUtils {
             if (!TextUtils.isEmpty(author)) {
                 final SpannableString authorSpan = new SpannableString(author);
                 // Change the author text color and style
-                applyColorAndStyle(context, authorSpan, R.color.edx_brand_primary_base, Typeface.BOLD);
+                applyColorAndStyle(context, authorSpan, getAuthorTextColor(authorData), Typeface.BOLD);
                 joinableStrings.add(authorSpan);
             }
 
@@ -216,5 +216,11 @@ public abstract class DiscussionTextUtils {
             final int flags = spannedHtml.getSpanFlags(spanObj);
             viewText.setSpan(spanObj, start, end, flags);
         }
+    }
+
+    @ColorRes
+    private static int getAuthorTextColor(@NonNull IAuthorData authorData) {
+        return authorData.isAuthorAnonymous() ?
+                R.color.edx_brand_gray_base : R.color.edx_brand_primary_base;
     }
 }
