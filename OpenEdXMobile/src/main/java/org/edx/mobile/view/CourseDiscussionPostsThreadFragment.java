@@ -265,11 +265,10 @@ public class CourseDiscussionPostsThreadFragment extends CourseDiscussionPostsBa
 
     @SuppressWarnings("unused")
     public void onEventMainThread(DiscussionCommentPostedEvent event) {
-        // If a new comment was posted in a listed thread, increment its comment count
+        // If a new response/comment was posted in a listed thread, we need to update the list
         for (int i = 0; i < discussionPostsAdapter.getCount(); ++i) {
             final DiscussionThread discussionThread = discussionPostsAdapter.getItem(i);
             if (discussionThread.containsComment(event.getComment())) {
-                discussionThread.incrementCommentCount();
                 discussionPostsAdapter.notifyDataSetChanged();
                 break;
             }
