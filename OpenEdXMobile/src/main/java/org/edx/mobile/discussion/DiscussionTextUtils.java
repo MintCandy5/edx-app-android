@@ -68,7 +68,8 @@ public abstract class DiscussionTextUtils {
                 final SpannableString authorSpan = new SpannableString(author);
                 if (config.isUserProfilesEnabled() && !authorData.isAuthorAnonymous()) {
                     // Change the author text color and style
-                    applyColorAndStyle(context, authorSpan, getAuthorTextColor(authorData), Typeface.BOLD);
+                    applyColorAndStyle(context, authorSpan, authorData.isAuthorAnonymous(),
+                            R.color.edx_brand_primary_base, Typeface.BOLD);
 
                     // Set the click listener on the whole textView
                     textView.setOnClickListener(new View.OnClickListener() {
@@ -114,7 +115,8 @@ public abstract class DiscussionTextUtils {
             if (!TextUtils.isEmpty(author)) {
                 final SpannableString authorSpan = new SpannableString(author);
                 // Change the author text color and style
-                applyColorAndStyle(context, authorSpan, getAuthorTextColor(authorData), Typeface.BOLD);
+                applyColorAndStyle(context, authorSpan, authorData.isAuthorAnonymous(),
+                        R.color.edx_brand_primary_base, Typeface.BOLD);
                 joinableStrings.add(authorSpan);
             }
 
@@ -135,9 +137,12 @@ public abstract class DiscussionTextUtils {
 
     private static void applyColorAndStyle(@NonNull Context context,
                                            @NonNull SpannableString span,
+                                           boolean isAuthorAnonymous,
                                            @ColorRes int color, int style) {
-        span.setSpan(new ForegroundColorSpan(context.getResources().getColor(color)), 0,
-                span.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        if (!isAuthorAnonymous) {
+            span.setSpan(new ForegroundColorSpan(context.getResources().getColor(color)), 0,
+                    span.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        }
         span.setSpan(new StyleSpan(style), 0, span.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
     }
 
@@ -216,11 +221,5 @@ public abstract class DiscussionTextUtils {
             final int flags = spannedHtml.getSpanFlags(spanObj);
             viewText.setSpan(spanObj, start, end, flags);
         }
-    }
-
-    @ColorRes
-    private static int getAuthorTextColor(@NonNull IAuthorData authorData) {
-        return authorData.isAuthorAnonymous() ?
-                R.color.edx_brand_gray_base : R.color.edx_brand_primary_base;
     }
 }
